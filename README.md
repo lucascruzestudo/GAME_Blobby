@@ -4,7 +4,7 @@
 "Blobby: A Jornada Infinita" é um jogo de plataforma onde os jogadores assumem o papel de Blobby, uma slime determinada a alcançar o planeta Zenith e fundir-se a ele. Durante a jornada, Blobby deve superar obstáculos e saltar cada vez mais alto.
 
 ## Progresso
-Status atual do projeto: Concluído
+Status atual do projeto: Em andamento
 
 ## Tecnologias e IDE Utilizadas
 - Unity
