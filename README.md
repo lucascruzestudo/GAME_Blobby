@@ -11,6 +11,18 @@ Status atual do projeto: Em andamento
 - C#
 - Visual Studio
 
+## Funcionalidades Implementadas
+- Condição de vitória
+- Condição de derrota
+- Música de fundo
+- Som de vitória
+- Som de derrota
+- Melhor tempo até vitória
+- Contador de pontuação
+- Textos de fim de jogo
+- Diferentes tipos de plataformas para subir
+- Plataforma com condição de derrota
+
 ## Controles do Jogo
 - **Tecla Espaço:** Saltar
 - **Teclas de Setas Esquerda/Direita:** Mover para a esquerda/direita
