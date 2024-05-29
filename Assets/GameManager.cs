@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log(message);
         scoreText.text = message + " Score: " + score.ToString();
-        timerText.text = message + " Time: " + survivalTime.ToString("F2") + "s";
+        timerText.text = "Time: " + survivalTime.ToString("F2") + "s";
         CheckAndSaveBestTime();
         timeRunning = false;
         gameEnded = true;
