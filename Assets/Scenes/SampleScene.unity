@@ -405,7 +405,6 @@ MonoBehaviour:
   commonPlatforms:
   - {fileID: 8398129687453295222, guid: 165a94cc16ec7bb4abb8e2314ee2b6a3, type: 3}
   - {fileID: 3140634783734558116, guid: 91639f50b2b69e44dbc66fa2c1f78ab3, type: 3}
-  - {fileID: 8398129687453295222, guid: aae8fa8a2399d9a4f8114e6d4b717418, type: 3}
   uncommonPlatforms:
   - {fileID: 3140634783734558116, guid: 6d29f136ddcaa0943b759a292d9b0771, type: 3}
   - {fileID: 8398129687453295222, guid: 2d0d63c64f84721458b549e07b1ad7de, type: 3}
