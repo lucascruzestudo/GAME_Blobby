@@ -26,10 +26,12 @@ Status atual do projeto: Em andamento
 - Substituição de posição quando movimenta muito para um lado
 - Troca de planos de fundo
 - Sons de pulo e de quicar em plataforma
+- Mecanismo de pausa
 
 ## Controles do Jogo
-- **Tecla Espaço:** Saltar
+- **Tecla para cima:** Saltar
 - **Teclas de Setas Esquerda/Direita:** Mover para a esquerda/direita
+- **Tecla ENTER:** Pausar
 
 ## Downloads
 [Link para o executável do jogo](https://placeholder.com)
