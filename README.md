@@ -22,6 +22,10 @@ Status atual do projeto: Em andamento
 - Textos de fim de jogo
 - Diferentes tipos de plataformas para subir
 - Plataforma com condição de derrota
+- Chegada até o planeta Zenith aos 300 pontos
+- Substituição de posição quando movimenta muito para um lado
+- Troca de planos de fundo
+- Sons de pulo e de quicar em plataforma
 
 ## Controles do Jogo
 - **Tecla Espaço:** Saltar
