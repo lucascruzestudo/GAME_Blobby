@@ -414,7 +414,7 @@ MonoBehaviour:
   legendaryPlatforms:
   - {fileID: 8398129687453295222, guid: aae8fa8a2399d9a4f8114e6d4b717418, type: 3}
   platformCount: 300
-  zenith: {fileID: 4949400515876472610, guid: 1989ff3e89d0f7e498ae65798a971d41, type: 3}
+  zenith: {fileID: 1417037722}
   sky1: {fileID: 582497064}
   sky2: {fileID: 896383540}
   sky3: {fileID: 616492137}
@@ -1463,6 +1463,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1417037722 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4949400515876472610, guid: 1989ff3e89d0f7e498ae65798a971d41, type: 3}
+  m_PrefabInstance: {fileID: 1804056909}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1804056909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1472,12 +1477,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2080571886034743107, guid: 1989ff3e89d0f7e498ae65798a971d41, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5.9157014
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080571886034743107, guid: 1989ff3e89d0f7e498ae65798a971d41, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5.9157014
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080571886034743107, guid: 1989ff3e89d0f7e498ae65798a971d41, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5.9157014
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080571886034743107, guid: 1989ff3e89d0f7e498ae65798a971d41, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.66
+      value: -43.4
       objectReference: {fileID: 0}
     - target: {fileID: 2080571886034743107, guid: 1989ff3e89d0f7e498ae65798a971d41, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2080571886034743107, guid: 1989ff3e89d0f7e498ae65798a971d41, type: 3}
       propertyPath: m_LocalPosition.z

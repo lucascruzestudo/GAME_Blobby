@@ -64,11 +64,13 @@ public class GameManager : MonoBehaviour
         backgroundAudioSource.loop = true;
         winAudioSource.loop = false;
         loseAudioSource.loop = false;
+
+        InstantiatePrefabAtHeight(303.5f);
+
     }
 
     void Start()
     {
-        InstantiatePrefabAtHeight(301.5f);
         SceneManager.sceneLoaded += OnSceneLoaded;
         FindUITextMeshes();
         GeneratePlatforms();
@@ -88,7 +90,8 @@ public class GameManager : MonoBehaviour
         timerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
         bestTimeText = GameObject.Find("BestTimeText").GetComponent<TextMeshProUGUI>();
 
-        pauseText = GameObject.Find("PauseText").GetComponent<TextMeshProUGUI>();
+        pauseText = GameObject.Find("BestTimeText").GetComponent<TextMeshProUGUI>();
+        zenith = GameObject.Find("Zenith");
     }
 
     void TogglePause()
