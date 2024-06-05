@@ -943,7 +943,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: 24e159d3ccdbfab4799870718edcd9ff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6a4abd163cd2eef46b430f7540bc17ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -963,8 +963,8 @@ Transform:
   m_GameObject: {fileID: 616492137}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0705, y: 0.0235, z: 10}
-  m_LocalScale: {x: 1.1490254, y: 0.9751757, z: 1}
+  m_LocalPosition: {x: -0.0225, y: 0.0843, z: 12}
+  m_LocalScale: {x: 1.6198208, y: 1.370488, z: 1.2108}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 519420032}
@@ -1131,7 +1131,7 @@ Transform:
   m_GameObject: {fileID: 896383540}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.1411, y: 0, z: 10}
+  m_LocalPosition: {x: -0.1411, y: 0, z: 11}
   m_LocalScale: {x: 1.3021282, y: 0.875, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1223,7 +1223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  jumpForce: 10
+  jumpForce: 7
   rb: {fileID: 1260568667}
   jumpSound: {fileID: 8300000, guid: dd7e35fb068a1fe4bb34c808c95fce72, type: 3}
   landingSound: {fileID: 8300000, guid: b605644800b07844bb085d37e502f678, type: 3}
@@ -1661,10 +1661,10 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 51565824}
   - {fileID: 519420032}
-  - {fileID: 1260568670}
-  - {fileID: 8655908124117208125}
   - {fileID: 312931263}
   - {fileID: 182011494}
-  - {fileID: 51565824}
   - {fileID: 186087247}
+  - {fileID: 8655908124117208125}
+  - {fileID: 1260568670}
