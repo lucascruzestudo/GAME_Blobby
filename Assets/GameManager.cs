@@ -209,36 +209,42 @@ public class GameManager : MonoBehaviour
     }
 
     private void UpdateSky()
+{
+    if (sky1 == null || sky2 == null || sky3 == null)
     {
-        if (sky1 == null || sky2 == null || sky3 == null)
-        {
-            sky1 = GameObject.Find("sky1");
-            sky2 = GameObject.Find("sky2");
-            sky3 = GameObject.Find("sky3");
-        }
+        sky1 = GameObject.Find("sky1");
+        sky2 = GameObject.Find("sky2");
+        sky3 = GameObject.Find("sky3");
+    }
 
-        if (sky1 != null && sky2 != null && sky3 != null && !gameEnded)
+    Debug.Log($"Updating sky. Score: {score}, Skies: {sky1}, {sky2}, {sky3}");
+
+    if (sky1 != null && sky2 != null && sky3 != null && !gameEnded)
+    {
+        if (score >= 200)
         {
-            if (score >= 200)
-            {
-                sky1.SetActive(false);
-                sky2.SetActive(false);
-                sky3.SetActive(true);
-            }
-            else if (score >= 100)
-            {
-                sky1.SetActive(false);
-                sky2.SetActive(true);
-                sky3.SetActive(false);
-            }
-            else
-            {
-                sky1.SetActive(true);
-                sky2.SetActive(false);
-                sky3.SetActive(false);
-            }
+            Debug.Log("Setting sky3 active");
+            sky1.SetActive(false);
+            sky2.SetActive(false);
+            sky3.SetActive(true);
+        }
+        else if (score >= 100)
+        {
+            Debug.Log("Setting sky2 active");
+            sky1.SetActive(false);
+            sky2.SetActive(true);
+            sky3.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("Setting sky1 active");
+            sky1.SetActive(true);
+            sky2.SetActive(false);
+            sky3.SetActive(false);
         }
     }
+}
+
 
 
     private void UpdateScoreText()

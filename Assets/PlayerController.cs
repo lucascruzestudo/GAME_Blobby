@@ -13,11 +13,13 @@ public class PlayerController : MonoBehaviour
     private float moveX;
     private bool canJump = false;
     private AudioSource audioSource;
+    private Camera mainCamera;  // Camera reference
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
+        mainCamera = Camera.main; // Initialize the main camera
     }
 
     void Update()
@@ -30,6 +32,8 @@ public class PlayerController : MonoBehaviour
             {
                 Jump();
             }
+
+            CheckPosition(); // Call to check the position and wrap if necessary
         }
         else
         {
@@ -55,6 +59,19 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Jump initiated");
     }
 
+    private void CheckPosition()
+    {
+        Vector3 viewportPosition = mainCamera.WorldToViewportPoint(transform.position);
+        if (viewportPosition.x > 1)
+        {
+            transform.position = mainCamera.ViewportToWorldPoint(new Vector3(0, viewportPosition.y, viewportPosition.z));
+        }
+        else if (viewportPosition.x < 0)
+        {
+            transform.position = mainCamera.ViewportToWorldPoint(new Vector3(1, viewportPosition.y, viewportPosition.z));
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         foreach (ContactPoint2D contact in collision.contacts)
@@ -64,7 +81,7 @@ public class PlayerController : MonoBehaviour
                 canJump = true;
                 if (landingSound != null && audioSource != null)
                 {
-                audioSource.PlayOneShot(landingSound, 3.5f);
+                    audioSource.PlayOneShot(landingSound, 3.5f);
                 }
                 Debug.Log("Can jump");
                 break;
