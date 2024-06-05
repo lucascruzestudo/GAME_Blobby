@@ -87,6 +87,8 @@ public class GameManager : MonoBehaviour
         scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
         timerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
         bestTimeText = GameObject.Find("BestTimeText").GetComponent<TextMeshProUGUI>();
+
+        pauseText = GameObject.Find("PauseText").GetComponent<TextMeshProUGUI>();
     }
 
     void TogglePause()
@@ -212,9 +214,9 @@ public class GameManager : MonoBehaviour
 {
     if (sky1 == null || sky2 == null || sky3 == null)
     {
-        sky1 = GameObject.Find("sky1");
-        sky2 = GameObject.Find("sky2");
-        sky3 = GameObject.Find("sky3");
+        sky1 = GameObject.Find("Main Camera/sky1");
+        sky2 = GameObject.Find("Main Camera/sky2");
+        sky3 = GameObject.Find("Main Camera/sky3");
     }
 
     Debug.Log($"Updating sky. Score: {score}, Skies: {sky1}, {sky2}, {sky3}");
