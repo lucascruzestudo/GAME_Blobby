@@ -12,20 +12,30 @@ public class GameManager : MonoBehaviour
 
     public int platformCount = 300;
     private TextMeshProUGUI scoreText;
-    private TextMeshProUGUI timerText; 
+    private TextMeshProUGUI timerText;
     private TextMeshProUGUI bestTimeText;
+
+    public GameObject zenith;
+
+
+    public GameObject sky1;
+    public GameObject sky2;
+    public GameObject sky3;
+
+    public TextMeshProUGUI pauseText;
+
 
     public static GameManager Instance { get; private set; }
 
     private float highestPointReached = 0f;
     private int score = 0;
     private float survivalTime = 0f;
-    private bool timeRunning = true; // Flag to control whether time should be updated
-    public bool gameEnded = false; // Flag to prevent further actions after game ends
+    private bool timeRunning = true;
+    public bool gameEnded = false;
 
-    private AudioSource backgroundAudioSource; // Reference to the AudioSource for background music
-    private AudioSource winAudioSource; // Reference to the AudioSource for win sound
-    private AudioSource loseAudioSource; // Reference to the AudioSource for lose sound
+    private AudioSource backgroundAudioSource;
+    private AudioSource winAudioSource;
+    private AudioSource loseAudioSource;
 
     public AudioClip backgroundMusic;
     public AudioClip winSound;
@@ -43,24 +53,22 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // Create and set up the AudioSources
         backgroundAudioSource = gameObject.AddComponent<AudioSource>();
         winAudioSource = gameObject.AddComponent<AudioSource>();
         loseAudioSource = gameObject.AddComponent<AudioSource>();
 
-        // Assign audio clips
         backgroundAudioSource.clip = backgroundMusic;
         winAudioSource.clip = winSound;
         loseAudioSource.clip = loseSound;
 
-        // Configure audio sources
-        backgroundAudioSource.loop = true; // Loop background music
-        winAudioSource.loop = false; // No loop for win sound
-        loseAudioSource.loop = false; // No loop for lose sound
+        backgroundAudioSource.loop = true;
+        winAudioSource.loop = false;
+        loseAudioSource.loop = false;
     }
 
     void Start()
     {
+        InstantiatePrefabAtHeight(301.5f);
         SceneManager.sceneLoaded += OnSceneLoaded;
         FindUITextMeshes();
         GeneratePlatforms();
@@ -69,10 +77,10 @@ public class GameManager : MonoBehaviour
         LoadAndDisplayBestTime();
         gameEnded = false;
         timeRunning = true;
-        
-        // Play background music
+
         PlayBackgroundMusic();
     }
+
 
     private void FindUITextMeshes()
     {
@@ -81,11 +89,59 @@ public class GameManager : MonoBehaviour
         bestTimeText = GameObject.Find("BestTimeText").GetComponent<TextMeshProUGUI>();
     }
 
+    void TogglePause()
+    {
+        if (!gameEnded)
+        {
+            timeRunning = !timeRunning;
+            if (timeRunning)
+            {
+                pauseText.gameObject.SetActive(false);
+                Time.timeScale = 1f;
+                UnPauseBackgroundMusic();
+            }
+            else
+            {
+                pauseText.gameObject.SetActive(true);
+                pauseText.text = "PAUSED";
+
+                PauseBackgroundMusic();
+
+                Time.timeScale = 0f;
+            }
+        }
+    }
+
+    private void PauseBackgroundMusic()
+    {
+        if (backgroundAudioSource != null && backgroundAudioSource.isPlaying)
+        {
+            backgroundAudioSource.Pause();
+        }
+    }
+
+    private void UnPauseBackgroundMusic()
+    {
+        if (backgroundAudioSource != null && !backgroundAudioSource.isPlaying)
+        {
+            backgroundAudioSource.UnPause();
+        }
+    }
+
+
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            TogglePause();
+        }
+
         if (timeRunning)
             UpdateSurvivalTimer();
     }
+
+
 
     void GeneratePlatforms()
     {
@@ -96,7 +152,7 @@ public class GameManager : MonoBehaviour
 
         Vector3 spawnPosition = new Vector3();
         float spawnHeight = 0f;
-        while (spawnHeight < 1000f)
+        while (spawnHeight < 297.5f)
         {
             spawnHeight += Random.Range(0.5f, 2f);
             spawnPosition.y = spawnHeight;
@@ -104,11 +160,11 @@ public class GameManager : MonoBehaviour
 
             GameObject platformPrefab;
             float randomValue = Random.value;
-            if (randomValue < 0.90f) 
+            if (randomValue < 0.90f)
             {
                 platformPrefab = commonPlatforms[Random.Range(0, commonPlatforms.Count)];
             }
-            else if (randomValue < 0.95f) 
+            else if (randomValue < 0.95f)
             {
                 platformPrefab = uncommonPlatforms[Random.Range(0, uncommonPlatforms.Count)];
             }
@@ -116,7 +172,7 @@ public class GameManager : MonoBehaviour
             {
                 platformPrefab = rarePlatforms[Random.Range(0, rarePlatforms.Count)];
             }
-            else 
+            else
             {
                 platformPrefab = legendaryPlatforms[Random.Range(0, legendaryPlatforms.Count)];
             }
@@ -143,12 +199,47 @@ public class GameManager : MonoBehaviour
             highestPointReached = newYPosition;
             score = Mathf.FloorToInt(highestPointReached);
             UpdateScoreText();
-            if (score >= 1000 && !gameEnded)
+            UpdateSky();
+
+            if (score >= 300 && !gameEnded)
             {
                 EndGame("You Win!");
             }
         }
     }
+
+    private void UpdateSky()
+    {
+        if (sky1 == null || sky2 == null || sky3 == null)
+        {
+            sky1 = GameObject.Find("sky1");
+            sky2 = GameObject.Find("sky2");
+            sky3 = GameObject.Find("sky3");
+        }
+
+        if (sky1 != null && sky2 != null && sky3 != null && !gameEnded)
+        {
+            if (score >= 200)
+            {
+                sky1.SetActive(false);
+                sky2.SetActive(false);
+                sky3.SetActive(true);
+            }
+            else if (score >= 100)
+            {
+                sky1.SetActive(false);
+                sky2.SetActive(true);
+                sky3.SetActive(false);
+            }
+            else
+            {
+                sky1.SetActive(true);
+                sky2.SetActive(false);
+                sky3.SetActive(false);
+            }
+        }
+    }
+
 
     private void UpdateScoreText()
     {
@@ -163,52 +254,61 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void EndGame(string message)
+    void InstantiatePrefabAtHeight(float height)
     {
-        Debug.Log(message);
-        scoreText.text = message + " Score: " + score.ToString();
-        timerText.text = "Time: " + survivalTime.ToString("F2") + "s";
-        CheckAndSaveBestTime();
-        timeRunning = false; // Stop the timer
-        gameEnded = true;
-        
-        // Stop background music
-        StopBackgroundMusic();
-        
-        // Play win or lose sound
-        if (message == "You Win!")
-        {
-            winAudioSource.Play();
-        }
-        else
-        {
-            loseAudioSource.Play();
-        }
-        
-        Invoke("ReloadScene", 2);
+        Vector3 position = new Vector3(0, height, 0);
+
+        GameObject instantiatedObject = Instantiate(zenith, position, Quaternion.identity);
+
     }
+
+
+   void EndGame(string message)
+{
+    Debug.Log(message);
+    scoreText.text = message + " Score: " + score.ToString();
+    timerText.text = "Time: " + survivalTime.ToString("F2") + "s";
+    CheckAndSaveBestTime();
+    timeRunning = false;
+    gameEnded = true;
+
+    StopBackgroundMusic();
+
+    if (message == "You Win!")
+    {
+        winAudioSource.Play();
+    }
+    else
+    {
+        loseAudioSource.Play();
+    }
+
+    Invoke("ReloadScene", 2f);
+}
+
+void ReloadScene()
+{
+    Time.timeScale = 1f;
+    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+}
 
     void CheckAndSaveBestTime()
     {
-        float bestTime = PlayerPrefs.GetFloat("BestTime", float.MaxValue); // Default to float.MaxValue if not set
+        float bestTime = PlayerPrefs.GetFloat("BestTime", float.MaxValue);
         if (survivalTime < bestTime)
         {
             PlayerPrefs.SetFloat("BestTime", survivalTime);
             PlayerPrefs.Save();
-            LoadAndDisplayBestTime(); // Update the best time text if the best time is updated
+            LoadAndDisplayBestTime();
         }
     }
 
     void LoadAndDisplayBestTime()
     {
-        float bestTime = PlayerPrefs.GetFloat("BestTime", float.MaxValue); // Default to float.MaxValue if not set
+        float bestTime = PlayerPrefs.GetFloat("BestTime", float.MaxValue);
         bestTimeText.text = bestTime == float.MaxValue ? "Best Time: --" : "Best Time: " + bestTime.ToString("F2") + "s";
     }
 
-    void ReloadScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -222,8 +322,7 @@ public class GameManager : MonoBehaviour
         UpdateScoreText();
         UpdateTimerText();
         LoadAndDisplayBestTime();
-        
-        // Restart background music
+
         PlayBackgroundMusic();
     }
 
@@ -236,6 +335,7 @@ public class GameManager : MonoBehaviour
     {
         if (backgroundAudioSource != null && !backgroundAudioSource.isPlaying)
         {
+            backgroundAudioSource.volume = 0.4f;
             backgroundAudioSource.Play();
         }
     }

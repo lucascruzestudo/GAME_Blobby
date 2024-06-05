@@ -160,3 +160,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 10
+  collisionSound: {fileID: 8300000, guid: 3133f8f21845dfb40a09886932c9388c, type: 3}
