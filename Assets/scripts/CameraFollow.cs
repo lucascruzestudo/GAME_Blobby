@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform target;  // The player's transform
-    public float deathThreshold = -5f; // How far below the camera the player can go before dying
+    public Transform target;
+    public float deathThreshold = -5f;
     public bool playerDead = false;
 
     private void LateUpdate()

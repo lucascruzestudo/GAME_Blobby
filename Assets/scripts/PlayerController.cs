@@ -13,13 +13,13 @@ public class PlayerController : MonoBehaviour
     private float moveX;
     private bool canJump = false;
     private AudioSource audioSource;
-    private Camera mainCamera;  // Camera reference
+    private Camera mainCamera;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
-        mainCamera = Camera.main; // Initialize the main camera
+        mainCamera = Camera.main;
     }
 
     void Update()
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
                 Jump();
             }
 
-            CheckPosition(); // Call to check the position and wrap if necessary
+            CheckPosition();
         }
         else
         {
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
         canJump = false;
         if (jumpSound != null && audioSource != null)
         {
-            audioSource.PlayOneShot(jumpSound, 1.5f);
+            audioSource.PlayOneShot(jumpSound, 3f);
         }
         Debug.Log("Jump initiated");
     }

@@ -28,7 +28,6 @@ public class ObjectPool : MonoBehaviour
         }
         else
         {
-            // Fallback in case the pool is empty
             return Instantiate(platformPrefab); 
         }
     }
