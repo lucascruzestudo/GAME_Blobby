@@ -36,6 +36,7 @@ Status atual do projeto: Concluído
 - Foi testado o funcionamento pleno do jogo após reset de cena para garantir uma gameplay contínua sem dificuldades.
 - Foi testado o volume dos sons do jogo para garantir altura adequada para os efeitos sonoros.
 - Foi testado o indicador de pausa para garantir funcionamento pleno mesmo após varias pausas.
+- Foi testado o indicador de melhor tempo para garantir registro apenas em caso de vitória.
 
 ## Controles do Jogo
 - **Tecla para cima:** Saltar
